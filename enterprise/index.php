@@ -2,7 +2,7 @@
 session_start();
 include 'connect.php';
 
-if ($_SESSION["loggedin"] == "v") {
+if (isset($_SESSION["loggedin"])) {
   
 ?>
 <!DOCTYPE html>

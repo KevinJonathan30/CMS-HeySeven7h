@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 
-if ($_SESSION["loggedin"] == "v") {
+if (isset($_SESSION["loggedin"])) {
   
 ?>
 <!DOCTYPE html>

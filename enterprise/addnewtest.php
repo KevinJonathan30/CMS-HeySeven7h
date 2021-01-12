@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $err = "Please fill all the required field with valid data!";
     }
 }
-if ($_SESSION["loggedin"] == "v") {
+if (isset($_SESSION["loggedin"])) {
   
 ?>
 <!DOCTYPE html>
