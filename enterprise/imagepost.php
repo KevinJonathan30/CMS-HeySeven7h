@@ -31,7 +31,9 @@ if(is_uploaded_file($temp['tmp_name'])){
     }
   
     // Accept upload if there was no origin, or if it is an accepted origin
-    $filetowrite = $imageFolder . $temp['name'];
+    $arrImg = explode(".", $temp['name']);
+    $newName = $arrImg[0] . "-" . date("Y-m-d-h-i-sa") . "." . end($arrImg);
+    $filetowrite = $imageFolder . $newName;
     move_uploaded_file($temp['tmp_name'], $filetowrite);
   
     // Respond to the successful upload with JSON.
