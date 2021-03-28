@@ -1,7 +1,10 @@
 <?php
-        require_once("connect.php");
+        require_once("../connect.php");
 
-            $sql = "SELECT * from heyseven7h_tryout";
+        if(isset($_POST["id"])) {
+            $id = $_POST["id"];
+
+            $sql = "SELECT * from heyseven7h_tryout WHERE id=$id";
             $result = $conn->query($sql);
             $arr = [];
             if ($result->num_rows > 0){
@@ -10,5 +13,9 @@
                 }
             }
             echo json_encode($arr);
+        }
+        else {
+            echo "Parameter not set";
+        }
         $conn->close();
 ?>

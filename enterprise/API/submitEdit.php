@@ -1,5 +1,5 @@
 <?php
-        require_once("connect.php");
+        require_once("../connect.php");
 
         if(isset($_POST["id"]) && isset($_POST["name"]) && isset($_POST["time"]) && isset($_POST["linkTo"])) {
             $id = $_POST["id"];

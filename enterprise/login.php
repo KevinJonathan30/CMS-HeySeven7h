@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						$_SESSION["name"] = $name;              
 						
 						// Redirect user to welcome page
-						header("location: index.php");
+						header("location:index.php");
 					} else{
 						// Display an error message if password is not valid
 						$err = "The password you entered was not valid.";

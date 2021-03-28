@@ -1,10 +1,10 @@
 <?php 
-    require_once 'connect.php';
+    require_once '../connect.php';
 
-    $password = "seven7h2020";
+    $password = "admin";
     $password = password_hash($password,PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO heyseven7h_admin (id, name, username, password) VALUES (0, 'Administrator', 'admin', '$password')";
+    $sql = "INSERT INTO heyseven7h_admin (id, name, username, password) VALUES (0, 'Seven7h Edu Course', 'admin', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";

@@ -1,5 +1,5 @@
 <?php
-        require_once("connect.php");
+        require_once("../connect.php");
 
         if(isset($_POST["questionField"]) && isset($_POST["aField"]) && isset($_POST["bField"]) && isset($_POST["cField"]) && isset($_POST["dField"]) && isset($_POST["eField"]) && isset($_POST["correctOption"])) {
             $questionField = $_POST["questionField"];
