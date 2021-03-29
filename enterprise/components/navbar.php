@@ -53,6 +53,11 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         View Score
                     </a>
+                    <div class="sb-sidenav-menu-heading">Attendance</div>
+                    <a class="nav-link" href="studentrecord.php">
+                        <div class="sb-nav-link-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                        Student Record
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
