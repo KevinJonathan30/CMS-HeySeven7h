@@ -32,7 +32,8 @@ if (isset($_SESSION["loggedin"])) {
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                     <li class="breadcrumb-item active">Student Record</li>
                 </ol>
-                <button style="" class="btn btn-success" onclick="exportTableToXlsx()">Export to Excel</button>
+                <button class="btn btn-success" onclick="exportTableToXlsx()">Export to Excel</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#clearModal">Clear Monthly Record</button>
                 <button style="float: right;" class="btn btn-dark" data-toggle="modal" data-target="#addNewModal">Add
                     New</button>
                 <br><br>
@@ -152,6 +153,32 @@ if (isset($_SESSION["loggedin"])) {
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" onclick="addStudent()" class="btn btn-dark"
                                     data-dismiss="modal">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--clear entry modal-->
+                <div class="modal fade" id="clearModal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Clear Monthly Record</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to clear the monthly record?</p>
+                                <ul>
+                                        <li>Have you exported the table into Excel for this month? (for backup purpose)</li>
+                                        <li>This action cannot be undone</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" onclick="clearMonthlyRecord()" class="btn btn-danger"
+                                    data-dismiss="modal">Clear</button>
                             </div>
                         </div>
                     </div>
@@ -443,6 +470,20 @@ if (isset($_SESSION["loggedin"])) {
             data: {
                 id: id
             },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function clearMonthlyRecord() {
+        var id = document.getElementById("idTemp").value;
+        $.ajax({
+            url: "API/clear_student_record.php",
+            type: "POST",
             success: function(data) {
                 location.reload();
             },
