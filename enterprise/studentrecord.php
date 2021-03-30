@@ -32,6 +32,7 @@ if (isset($_SESSION["loggedin"])) {
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                     <li class="breadcrumb-item active">Student Record</li>
                 </ol>
+                <button style="" class="btn btn-success" onclick="exportTableToXlsx()">Export to Excel</button>
                 <button style="float: right;" class="btn btn-dark" data-toggle="modal" data-target="#addNewModal">Add
                     New</button>
                 <br><br>
@@ -77,8 +78,8 @@ if (isset($_SESSION["loggedin"])) {
                                         <th>29</th>
                                         <th>30</th>
                                         <th>31</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th class="action">Edit</th>
+                                        <th class="action">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,8 +121,8 @@ if (isset($_SESSION["loggedin"])) {
                                                 <td>" . $row["cal28"]. "</td>
                                                 <td>" . $row["cal29"]. "</td>
                                                 <td>" . $row["cal30"]. "</td>
-                                                <td>" . $row["cal31"]. "</td><td><button class='btn btn-warning' title='Edit' onclick='editEntry(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button></td><td>
-                                                <button class='btn btn-danger' title='Delete' onclick='deleteEntry(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td>
+                                                <td>" . $row["cal31"]. "</td><td><button class='btn btn-warning action' title='Edit' onclick='editEntry(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button></td><td>
+                                                <button class='btn btn-danger action' title='Delete' onclick='deleteEntry(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td>
                                                 </tr>";
                                             } 
                                         } 
@@ -132,6 +133,7 @@ if (isset($_SESSION["loggedin"])) {
                         </div>
                     </div>
                 </div>
+                <!--add new modal-->
                 <div class="modal fade" id="addNewModal" tabindex="-1" data-backdrop="static" data-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -154,6 +156,117 @@ if (isset($_SESSION["loggedin"])) {
                         </div>
                     </div>
                 </div>
+                <!--edit modal-->
+                <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Edit Entry</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label>Student ID</label>
+                                <input type="number" id="studentIDEdit" class="form-control" disabled>
+                                <label>Name</label>
+                                <input type="text" id="studentNameEdit" class="form-control" maxlength="200">
+                                <label>Day 1</label>
+                                <input type="text" maxlength="10" id="studentCal1" class="form-control">
+                                <label>Day 2</label>
+                                <input type="text" maxlength="10" id="studentCal2" class="form-control">
+                                <label>Day 3</label>
+                                <input type="text" maxlength="10" id="studentCal3" class="form-control">
+                                <label>Day 4</label>
+                                <input type="text" maxlength="10" id="studentCal4" class="form-control">
+                                <label>Day 5</label>
+                                <input type="text" maxlength="10" id="studentCal5" class="form-control">
+                                <label>Day 6</label>
+                                <input type="text" maxlength="10" id="studentCal6" class="form-control">
+                                <label>Day 7</label>
+                                <input type="text" maxlength="10" id="studentCal7" class="form-control">
+                                <label>Day 8</label>
+                                <input type="text" maxlength="10" id="studentCal8" class="form-control">
+                                <label>Day 9</label>
+                                <input type="text" maxlength="10" id="studentCal9" class="form-control">
+                                <label>Day 10</label>
+                                <input type="text" maxlength="10" id="studentCal10" class="form-control">
+                                <label>Day 11</label>
+                                <input type="text" maxlength="10" id="studentCal11" class="form-control">
+                                <label>Day 12</label>
+                                <input type="text" maxlength="10" id="studentCal12" class="form-control">
+                                <label>Day 13</label>
+                                <input type="text" maxlength="10" id="studentCal13" class="form-control">
+                                <label>Day 14</label>
+                                <input type="text" maxlength="10" id="studentCal14" class="form-control">
+                                <label>Day 15</label>
+                                <input type="text" maxlength="10" id="studentCal15" class="form-control">
+                                <label>Day 16</label>
+                                <input type="text" maxlength="10" id="studentCal16" class="form-control">
+                                <label>Day 17</label>
+                                <input type="text" maxlength="10" id="studentCal17" class="form-control">
+                                <label>Day 18</label>
+                                <input type="text" maxlength="10" id="studentCal18" class="form-control">
+                                <label>Day 19</label>
+                                <input type="text" maxlength="10" id="studentCal19" class="form-control">
+                                <label>Day 20</label>
+                                <input type="text" maxlength="10" id="studentCal20" class="form-control">
+                                <label>Day 21</label>
+                                <input type="text" maxlength="10" id="studentCal21" class="form-control">
+                                <label>Day 22</label>
+                                <input type="text" maxlength="10" id="studentCal22" class="form-control">
+                                <label>Day 23</label>
+                                <input type="text" maxlength="10" id="studentCal23" class="form-control">
+                                <label>Day 24</label>
+                                <input type="text" maxlength="10" id="studentCal24" class="form-control">
+                                <label>Day 25</label>
+                                <input type="text" maxlength="10" id="studentCal25" class="form-control">
+                                <label>Day 26</label>
+                                <input type="text" maxlength="10" id="studentCal26" class="form-control">
+                                <label>Day 27</label>
+                                <input type="text" maxlength="10" id="studentCal27" class="form-control">
+                                <label>Day 28</label>
+                                <input type="text" maxlength="10" id="studentCal28" class="form-control">
+                                <label>Day 29</label>
+                                <input type="text" maxlength="10" id="studentCal29" class="form-control">
+                                <label>Day 30</label>
+                                <input type="text" maxlength="10" id="studentCal30" class="form-control">
+                                <label>Day 31</label>
+                                <input type="text" maxlength="10" id="studentCal31" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" onclick="editStudent()" class="btn btn-warning"
+                                    data-dismiss="modal">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--delete modal-->
+                <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Delete Student</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this
+                                student?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <input type="hidden" name="idDeletion" id="idTemp" value=0>
+                                <button onclick="deleteStudent()" class="btn btn-danger">Delete!</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <?php include('components/footer.php'); ?>
@@ -167,6 +280,7 @@ if (isset($_SESSION["loggedin"])) {
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <script>
     function addStudent() {
         var name = document.getElementById("nameAdd").value;
@@ -185,6 +299,173 @@ if (isset($_SESSION["loggedin"])) {
                 }
             });
         }
+    }
+
+    function editEntry(id) {
+        $.ajax({
+            url: "API/get_student_record.php",
+            type: "POST",
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(data) {
+                document.getElementById("studentIDEdit").value = data[0].id;
+                document.getElementById("studentNameEdit").value = data[0].name;
+                document.getElementById("studentCal1").value = data[0].cal1;
+                document.getElementById("studentCal2").value = data[0].cal2;
+                document.getElementById("studentCal3").value = data[0].cal3;
+                document.getElementById("studentCal4").value = data[0].cal4;
+                document.getElementById("studentCal5").value = data[0].cal5;
+                document.getElementById("studentCal6").value = data[0].cal6;
+                document.getElementById("studentCal7").value = data[0].cal7;
+                document.getElementById("studentCal8").value = data[0].cal8;
+                document.getElementById("studentCal9").value = data[0].cal9;
+                document.getElementById("studentCal10").value = data[0].cal10;
+                document.getElementById("studentCal11").value = data[0].cal11;
+                document.getElementById("studentCal12").value = data[0].cal12;
+                document.getElementById("studentCal13").value = data[0].cal13;
+                document.getElementById("studentCal14").value = data[0].cal14;
+                document.getElementById("studentCal15").value = data[0].cal15;
+                document.getElementById("studentCal16").value = data[0].cal16;
+                document.getElementById("studentCal17").value = data[0].cal17;
+                document.getElementById("studentCal18").value = data[0].cal18;
+                document.getElementById("studentCal19").value = data[0].cal19;
+                document.getElementById("studentCal20").value = data[0].cal20;
+                document.getElementById("studentCal21").value = data[0].cal21;
+                document.getElementById("studentCal22").value = data[0].cal22;
+                document.getElementById("studentCal23").value = data[0].cal23;
+                document.getElementById("studentCal24").value = data[0].cal24;
+                document.getElementById("studentCal25").value = data[0].cal25;
+                document.getElementById("studentCal26").value = data[0].cal26;
+                document.getElementById("studentCal27").value = data[0].cal27;
+                document.getElementById("studentCal28").value = data[0].cal28;
+                document.getElementById("studentCal29").value = data[0].cal29;
+                document.getElementById("studentCal30").value = data[0].cal30;
+                document.getElementById("studentCal31").value = data[0].cal31;
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function editStudent() {
+        var id = document.getElementById("studentIDEdit").value;
+        var name = document.getElementById("studentNameEdit").value;
+        var cal1 = document.getElementById("studentCal1").value;
+        var cal2 = document.getElementById("studentCal2").value;
+        var cal3 = document.getElementById("studentCal3").value;
+        var cal4 = document.getElementById("studentCal4").value;
+        var cal5 = document.getElementById("studentCal5").value;
+        var cal6 = document.getElementById("studentCal6").value;
+        var cal7 = document.getElementById("studentCal7").value;
+        var cal8 = document.getElementById("studentCal8").value;
+        var cal9 = document.getElementById("studentCal9").value;
+        var cal10 = document.getElementById("studentCal10").value;
+        var cal11 = document.getElementById("studentCal11").value;
+        var cal12 = document.getElementById("studentCal12").value;
+        var cal13 = document.getElementById("studentCal13").value;
+        var cal14 = document.getElementById("studentCal14").value;
+        var cal15 = document.getElementById("studentCal15").value;
+        var cal16 = document.getElementById("studentCal16").value;
+        var cal17 = document.getElementById("studentCal17").value;
+        var cal18 = document.getElementById("studentCal18").value;
+        var cal19 = document.getElementById("studentCal19").value;
+        var cal20 = document.getElementById("studentCal20").value;
+        var cal21 = document.getElementById("studentCal21").value;
+        var cal22 = document.getElementById("studentCal22").value;
+        var cal23 = document.getElementById("studentCal23").value;
+        var cal24 = document.getElementById("studentCal24").value;
+        var cal25 = document.getElementById("studentCal25").value;
+        var cal26 = document.getElementById("studentCal26").value;
+        var cal27 = document.getElementById("studentCal27").value;
+        var cal28 = document.getElementById("studentCal28").value;
+        var cal29 = document.getElementById("studentCal29").value;
+        var cal30 = document.getElementById("studentCal30").value;
+        var cal31 = document.getElementById("studentCal31").value;
+        $.ajax({
+            url: "API/update_student_record.php",
+            type: "POST",
+            data: {
+                id: id,
+                name: name,
+                cal1: cal1,
+                cal2: cal2,
+                cal3: cal3,
+                cal4: cal4,
+                cal5: cal5,
+                cal6: cal6,
+                cal7: cal7,
+                cal8: cal8,
+                cal9: cal9,
+                cal10: cal10,
+                cal11: cal11,
+                cal12: cal12,
+                cal13: cal13,
+                cal14: cal14,
+                cal15: cal15,
+                cal16: cal16,
+                cal17: cal17,
+                cal18: cal18,
+                cal19: cal19,
+                cal20: cal20,
+                cal21: cal21,
+                cal22: cal22,
+                cal23: cal23,
+                cal24: cal24,
+                cal25: cal25,
+                cal26: cal26,
+                cal27: cal27,
+                cal28: cal28,
+                cal29: cal29,
+                cal30: cal30,
+                cal31: cal31
+            },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function deleteEntry(id) {
+        document.getElementById("idTemp").value = id;
+    }
+
+    function deleteStudent() {
+        var id = document.getElementById("idTemp").value;
+        $.ajax({
+            url: "API/delete_student_record.php",
+            type: "POST",
+            data: {
+                id: id
+            },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function exportTableToXlsx() {
+        var today = new Date();
+        $('.action').remove();
+        let table = document.getElementsByTagName("table");
+        TableToExcel.convert(table[0], {
+            name: today + '_Students.xlsx',
+            sheet: {
+                name: 'Sheet1'
+            }
+        });
+        setTimeout(function() {
+            location.reload();
+        }, 5000);
+        
     }
     </script>
 </body>

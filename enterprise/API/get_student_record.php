@@ -4,8 +4,8 @@
         if(isset($_POST["id"])) {
             $id = $_POST["id"];
 
-            $sql = "SELECT * from heyseven7h_tryout WHERE id=$id";
-            
+            $sql = "SELECT * FROM heyseven7h_attendance WHERE id=$id";
+
             $result = $conn->query($sql);
             $arr = [];
             if ($result->num_rows > 0){
