@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2021 at 10:32 AM
+-- Generation Time: Mar 31, 2021 at 04:26 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -39,7 +39,58 @@ CREATE TABLE `heyseven7h_admin` (
 --
 
 INSERT INTO `heyseven7h_admin` (`id`, `name`, `username`, `password`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$q5lrtGNmyoNhMptXUy.YbOqYoxZ7tOLHVPWRQkhRQaGabzp8KV5wS');
+(2, 'Seven7h Edu Course', 'admin', '$2y$10$cBnq54JXITHKnt8HTHxzDO7O/KiZh32H2StbRAvnbkUTHZ8ZSyGem');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `heyseven7h_attendance`
+--
+
+CREATE TABLE `heyseven7h_attendance` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `cal1` varchar(10) NOT NULL,
+  `cal2` varchar(10) NOT NULL,
+  `cal3` varchar(10) NOT NULL,
+  `cal4` varchar(10) NOT NULL,
+  `cal5` varchar(10) NOT NULL,
+  `cal6` varchar(10) NOT NULL,
+  `cal7` varchar(10) NOT NULL,
+  `cal8` varchar(10) NOT NULL,
+  `cal9` varchar(10) NOT NULL,
+  `cal10` varchar(10) NOT NULL,
+  `cal11` varchar(10) NOT NULL,
+  `cal12` varchar(10) NOT NULL,
+  `cal13` varchar(10) NOT NULL,
+  `cal14` varchar(10) NOT NULL,
+  `cal15` varchar(10) NOT NULL,
+  `cal16` varchar(10) NOT NULL,
+  `cal17` varchar(10) NOT NULL,
+  `cal18` varchar(10) NOT NULL,
+  `cal19` varchar(10) NOT NULL,
+  `cal20` varchar(10) NOT NULL,
+  `cal21` varchar(10) NOT NULL,
+  `cal22` varchar(10) NOT NULL,
+  `cal23` varchar(10) NOT NULL,
+  `cal24` varchar(10) NOT NULL,
+  `cal25` varchar(10) NOT NULL,
+  `cal26` varchar(10) NOT NULL,
+  `cal27` varchar(10) NOT NULL,
+  `cal28` varchar(10) NOT NULL,
+  `cal29` varchar(10) NOT NULL,
+  `cal30` varchar(10) NOT NULL,
+  `cal31` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `heyseven7h_attendance`
+--
+
+INSERT INTO `heyseven7h_attendance` (`id`, `name`, `cal1`, `cal2`, `cal3`, `cal4`, `cal5`, `cal6`, `cal7`, `cal8`, `cal9`, `cal10`, `cal11`, `cal12`, `cal13`, `cal14`, `cal15`, `cal16`, `cal17`, `cal18`, `cal19`, `cal20`, `cal21`, `cal22`, `cal23`, `cal24`, `cal25`, `cal26`, `cal27`, `cal28`, `cal29`, `cal30`, `cal31`) VALUES
+(2, 'Budi', '', '', '', '', 'Mat', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(5, 'Andi', '', 'Fis', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(6, 'Ani', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -60,6 +111,13 @@ CREATE TABLE `heyseven7h_question` (
   `pembahasan` varchar(2048) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `heyseven7h_question`
+--
+
+INSERT INTO `heyseven7h_question` (`id`, `question`, `answerA`, `answerB`, `answerC`, `answerD`, `answerE`, `correctAnswer`, `tryout_id`, `pembahasan`) VALUES
+(14, '<p>a</p>', '<p>a</p>', '<p>a</p>', '<p>a</p>', '<p>a</p>', '<p>a</p>', 'A', 14, '<p>a</p>');
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +131,14 @@ CREATE TABLE `heyseven7h_score` (
   `dateSubmitted` varchar(100) NOT NULL,
   `tryout_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `heyseven7h_score`
+--
+
+INSERT INTO `heyseven7h_score` (`id`, `name`, `score`, `dateSubmitted`, `tryout_id`) VALUES
+(7, 'a', 0, '2021-03-30 11:06:17pm', 14),
+(8, 'a', 100, '2021-03-30 11:06:33pm', 14);
 
 -- --------------------------------------------------------
 
@@ -88,6 +154,13 @@ CREATE TABLE `heyseven7h_tryout` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `heyseven7h_tryout`
+--
+
+INSERT INTO `heyseven7h_tryout` (`id`, `name`, `time`, `linkTo`) VALUES
+(14, 'aaa', 0, 'None');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -95,6 +168,12 @@ CREATE TABLE `heyseven7h_tryout` (
 -- Indexes for table `heyseven7h_admin`
 --
 ALTER TABLE `heyseven7h_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `heyseven7h_attendance`
+--
+ALTER TABLE `heyseven7h_attendance`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -123,25 +202,31 @@ ALTER TABLE `heyseven7h_tryout`
 -- AUTO_INCREMENT for table `heyseven7h_admin`
 --
 ALTER TABLE `heyseven7h_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `heyseven7h_attendance`
+--
+ALTER TABLE `heyseven7h_attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_question`
 --
 ALTER TABLE `heyseven7h_question`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_score`
 --
 ALTER TABLE `heyseven7h_score`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_tryout`
 --
 ALTER TABLE `heyseven7h_tryout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
