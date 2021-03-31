@@ -246,6 +246,7 @@ if (isset($_SESSION["loggedin"])) {
     score6475 = 0;
     score7687 = 0;
     score88100 = 0;
+    maxScore = 0;
     $(document).ready(function() {
         $.ajax({
             url: "API/getScoreData.php",
@@ -271,6 +272,31 @@ if (isset($_SESSION["loggedin"])) {
                         score88100++;
                     }
                 }
+                if (maxScore < score012) {
+                    maxScore = score012;
+                }
+                if (maxScore < score1325) {
+                    maxScore = score1325;
+                }
+                if (maxScore < score2637) {
+                    maxScore = score2637;
+                }
+                if (maxScore < score3850) {
+                    maxScore = score3850;
+                }
+                if (maxScore < score5163) {
+                    maxScore = score5163;
+                }
+                if (maxScore < score6475) {
+                    maxScore = score6475;
+                }
+                if (maxScore < score7687) {
+                    maxScore = score7687;
+                }
+                if (maxScore < score88100) {
+                    maxScore = score88100;
+                }
+                maxScore++
                 Chart.defaults.global.defaultFontFamily =
                     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
                 Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -315,7 +341,7 @@ if (isset($_SESSION["loggedin"])) {
                             yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    max: 10,
+                                    max: maxScore,
                                     maxTicksLimit: 5
                                 },
                                 gridLines: {
