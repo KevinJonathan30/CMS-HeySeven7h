@@ -88,11 +88,11 @@ if (isset($_SESSION["loggedin"])) {
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-dark text-white mb-4">
                             <div class="card-body">
-                                <strong>Student Record Count</strong><br><br>
+                                <strong>Submitted Tryout Count</strong><br><br>
                                 <p><i class="fas fa-book-reader"></i>
                                     &nbsp;
                                     <?php 
-                                        $sql = "select * from heyseven7h_attendance";
+                                        $sql = "select * from heyseven7h_score";
                                         $result = $conn->query($sql);
                                         $admin_count = $result->num_rows;
                                         echo $admin_count
