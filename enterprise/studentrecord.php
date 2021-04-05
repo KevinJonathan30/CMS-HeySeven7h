@@ -32,10 +32,20 @@ if (isset($_SESSION["loggedin"])) {
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                     <li class="breadcrumb-item active">Student Record</li>
                 </ol>
-                <button class="btn btn-success" onclick="exportTableToXlsx()">Export to Excel</button>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#clearModal">Clear Monthly Record</button>
-                <button style="float: right;" class="btn btn-dark" data-toggle="modal" data-target="#addNewModal">Add
-                    New</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-success" onclick="exportTableToXlsx()">Export to Excel</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#clearModal">Clear Monthly
+                            Record</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button style="float: right;" class="btn btn-dark" data-toggle="modal"
+                            data-target="#addNewModal">Add
+                            New</button>
+                    </div>
+                </div>
+
+
                 <br><br>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -46,6 +56,9 @@ if (isset($_SESSION["loggedin"])) {
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
+                                    <tr>
+                                        <th colspan="34" id="monthName"></th>
+                                    </tr>
                                     <tr>
                                         <th>Name</th>
                                         <th>1</th>
@@ -171,8 +184,8 @@ if (isset($_SESSION["loggedin"])) {
                             <div class="modal-body">
                                 <p>Are you sure you want to clear the monthly record?</p>
                                 <ul>
-                                        <li>Have you exported the table into Excel for this month? (for backup purpose)</li>
-                                        <li>This action cannot be undone</li>
+                                    <li>Have you exported the table into Excel for this month? (for backup purpose)</li>
+                                    <li>This action cannot be undone</li>
                                 </ul>
                             </div>
                             <div class="modal-footer">
@@ -506,8 +519,16 @@ if (isset($_SESSION["loggedin"])) {
         setTimeout(function() {
             location.reload();
         }, 5000);
-        
+
     }
+
+    $(document).ready(function() {
+        const date = new Date();
+        const month = date.toLocaleString('default', {
+            month: 'long'
+        });
+        $("#monthName").html(month + " " + date.getFullYear())
+    });
     </script>
 </body>
 
