@@ -34,6 +34,17 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
+                    <?php 
+                    if($_SESSION["role"] == 0) {
+                    ?>
+                    <a class="nav-link" href="managetutor.php">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Manage Tutor
+                    </a>
+
+                    <?php
+                    }
+                    ?>
                     <div class="sb-sidenav-menu-heading">Tryout</div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="false" aria-controls="collapsePages">
