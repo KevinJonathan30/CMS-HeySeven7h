@@ -5,7 +5,7 @@ require_once 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $id = trim($_POST["idDeletion"]);
     if($id != "") {
-        $sql = "DELETE FROM heyseven7h_admin WHERE id=$id";
+        $sql = "DELETE FROM heyseven7h_admin WHERE id=$id; DELETE FROM heyseven7h_student WHERE tutor_id=$id; DELETE FROM heyseven7h_private_attendance WHERE tutor_id=$id";
         if ($conn->multi_query($sql) === TRUE) {
             header("location:managetutor.php");
         }   
