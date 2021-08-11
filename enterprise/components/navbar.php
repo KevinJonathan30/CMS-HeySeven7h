@@ -68,6 +68,10 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                         Student Record
                     </a>
+                    <a class="nav-link" href="privateattendance.php">
+                        <div class="sb-nav-link-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                        Private Attendance
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
