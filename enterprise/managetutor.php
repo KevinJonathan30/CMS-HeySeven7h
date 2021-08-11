@@ -12,8 +12,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["role"] == 0) {
-  
+if (isset($_SESSION["loggedin"])) {
+    if($_SESSION["role"] != 0) {
+        header("location:alltests.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

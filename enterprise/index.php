@@ -3,6 +3,9 @@ session_start();
 include 'connect.php';
 
 if (isset($_SESSION["loggedin"])) {
+    if($_SESSION["role"] != 0) {
+        header("location:alltests.php");
+    }
   
 ?>
 <!DOCTYPE html>
