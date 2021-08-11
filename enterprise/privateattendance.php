@@ -66,7 +66,7 @@ if (isset($_SESSION["loggedin"])) {
                                     <?php 
                                                 $tutor_id = $_SESSION["id"];
                                                 if($_SERVER["REQUEST_METHOD"] == "GET") {
-                                                    if(isset($_GET["id"])) {
+                                                    if(isset($_GET["id"]) && $_SESSION["role"] == 0) {
                                                         $tutor_id = $_GET["id"];
                                                     }
                                                 }  

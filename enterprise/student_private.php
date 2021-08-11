@@ -64,9 +64,11 @@ if (isset($_SESSION["loggedin"])) {
 
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                              echo "<div style='margin-left: 1rem; margin-top: 1rem;'><p>Name: " . $row["name"]. "</p><p>Address: " . $row["address"]. "</p><p>Phone Number: " .
+                                if($row["tutor_id"] == $_SESSION["id"] || $_SESSION["role"] == 0) {
+                                    echo "<div style='margin-left: 1rem; margin-top: 1rem;'><p>Name: " . $row["name"]. "</p><p>Address: " . $row["address"]. "</p><p>Phone Number: " .
                               $row["phone"]."</p><p>Price/Hour: Rp ".$row["priceperhour"]."</p></div>";
                               $pricePerHour = $row["priceperhour"];
+                                }   
                             } 
                           }
                     ?>
@@ -108,10 +110,23 @@ if (isset($_SESSION["loggedin"])) {
                                             ?>
                                 </tbody>
                             </table>
-                            <p style="font-weight: bold; text-align: center;">
+                            <hr>
+                            <p style="font-weight: bold; text-align: left;">
                                 <?php 
-                                $total_hours *= $pricePerHour;
-                                echo "Total Amount: $total_hours" ;
+                                $total_amount = $total_hours * $pricePerHour;
+                                echo "Total Amount: Rp $total_amount ($total_hours hour in total)" ;
+                            ?>
+                            </p>
+                            <p style="font-weight: bold; text-align: left;">
+                                <?php 
+                                $charge = $total_amount * 0.1;
+                                echo "Charge 10%: Rp $charge" ;
+                            ?>
+                            </p>
+                            <p style="font-weight: bold; text-align: left;">
+                                <?php 
+                                $maximum_total = $total_amount + $total_amount * 0.1;
+                                echo "Net Amount: Rp $maximum_total" ;
                             ?>
                             </p>
                         </div>
