@@ -68,7 +68,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["role"] == 0) {
                        
                                                 if ($result->num_rows > 0) {
                                                   while($row = $result->fetch_assoc()) {
-                                                    echo "<tr><td>" . $row["id"]. "</td><td>" . $row["name"]. "</td><td>" . $row["username"]. "</td><td>
+                                                    echo "<tr><td>" . $row["id"]. "</td><td>" . $row["name"]. "</td><td>" . $row["username"]. "</td><td><a href='privateattendance.php?id=".$row["id"]."' <button class='btn btn-info' title='Student List'><i class='fas fa-bars'></i></button></a>&nbsp;
                                                     <button class='btn btn-warning' title='Edit' onclick='editPage(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button>&nbsp;<button class='btn btn-danger' title='Delete' onclick='deletePage(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td></tr></a>";
                                                   } 
                                                 }

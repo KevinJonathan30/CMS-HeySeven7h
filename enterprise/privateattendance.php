@@ -65,6 +65,11 @@ if (isset($_SESSION["loggedin"])) {
                                 <tbody>
                                     <?php 
                                                 $tutor_id = $_SESSION["id"];
+                                                if($_SERVER["REQUEST_METHOD"] == "GET") {
+                                                    if(isset($_GET["id"])) {
+                                                        $tutor_id = $_GET["id"];
+                                                    }
+                                                }  
                                                 $sql = "SELECT * FROM heyseven7h_student WHERE tutor_id=$tutor_id";
                                                 $result = $conn->query($sql);
                        
