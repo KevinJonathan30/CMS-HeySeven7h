@@ -89,18 +89,19 @@ if (isset($_SESSION["loggedin"])) {
                                 <tbody>
                                     <?php 
                                     $total_hours = 0;
-                                                $sql = "SELECT id, ROW_NUMBER() OVER(
-                                                    ORDER BY id) AS row_num, date, start, finish, EXTRACT(HOUR FROM TIMEDIFF(finish, start)) + (EXTRACT(MINUTE FROM TIMEDIFF(finish, start)) + EXTRACT(SECOND FROM TIMEDIFF(finish, start))/60)/60 AS difference, subject, topic, comment, student_id FROM heyseven7h_private_attendance WHERE student_id=$id";
+                                    $counter = 1;
+                                                $sql = "SELECT id, date, start, finish, EXTRACT(HOUR FROM TIMEDIFF(finish, start)) + (EXTRACT(MINUTE FROM TIMEDIFF(finish, start)) + EXTRACT(SECOND FROM TIMEDIFF(finish, start))/60)/60 AS difference, subject, topic, comment, student_id FROM heyseven7h_private_attendance WHERE student_id=$id";
                                                 $result = $conn->query($sql);
                        
                                                 if ($result->num_rows > 0) {
                                                   while($row = $result->fetch_assoc()) {
                                                     $total_hours += $row["difference"];
-                                                    echo "<td>" . $row["row_num"]. "</td><td>" . $row["date"]. "</td><td>" .
+                                                    echo "<td>" . $counter. "</td><td>" . $row["date"]. "</td><td>" .
                                                     $row["start"]."</td><td>".$row["finish"]."</td><td>".
                                                     floatval($row["difference"])."</td><td>".
                                                     $row["subject"]."</td><td>".$row["topic"]."</td><td>".$row["comment"]."<td>
                                                     <button class='btn btn-warning' title='Edit' onclick='editPage(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button>&nbsp;<button class='btn btn-danger' title='Delete' onclick='deletePage(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td></tr></a>";
+                                                    $counter++;
                                                   } 
                                                 }
                                                 $conn->close();
