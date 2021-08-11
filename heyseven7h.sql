@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 04:26 PM
+-- Generation Time: Aug 11, 2021 at 01:43 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -31,15 +31,17 @@ CREATE TABLE `heyseven7h_admin` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `heyseven7h_admin`
 --
 
-INSERT INTO `heyseven7h_admin` (`id`, `name`, `username`, `password`) VALUES
-(2, 'Seven7h Edu Course', 'admin', '$2y$10$cBnq54JXITHKnt8HTHxzDO7O/KiZh32H2StbRAvnbkUTHZ8ZSyGem');
+INSERT INTO `heyseven7h_admin` (`id`, `name`, `username`, `password`, `role`) VALUES
+(2, 'Seven7h Edu Course', 'admin', '$2y$10$cBnq54JXITHKnt8HTHxzDO7O/KiZh32H2StbRAvnbkUTHZ8ZSyGem', 0),
+(4, 'Kevin Jonathan', 'kevinjo30', '$2y$10$svo2xNwGhZ7sctSl.F/kSOAAB1lBG7Mkgbayiq9GKCux9Mux0VtL2', 1);
 
 -- --------------------------------------------------------
 
@@ -95,6 +97,31 @@ INSERT INTO `heyseven7h_attendance` (`id`, `name`, `cal1`, `cal2`, `cal3`, `cal4
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `heyseven7h_private_attendance`
+--
+
+CREATE TABLE `heyseven7h_private_attendance` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `start` time NOT NULL,
+  `finish` time NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `topic` varchar(255) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `tutor_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `heyseven7h_private_attendance`
+--
+
+INSERT INTO `heyseven7h_private_attendance` (`id`, `date`, `start`, `finish`, `subject`, `topic`, `comment`, `student_id`, `tutor_id`) VALUES
+(9, '2021-08-10', '19:42:06', '20:42:06', 'a', 'a', 'a', 3, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `heyseven7h_question`
 --
 
@@ -110,13 +137,6 @@ CREATE TABLE `heyseven7h_question` (
   `tryout_id` int(11) DEFAULT NULL,
   `pembahasan` varchar(2048) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `heyseven7h_question`
---
-
-INSERT INTO `heyseven7h_question` (`id`, `question`, `answerA`, `answerB`, `answerC`, `answerD`, `answerE`, `correctAnswer`, `tryout_id`, `pembahasan`) VALUES
-(14, '<p>a</p>', '<p>a</p>', '<p>a</p>', '<p>a</p>', '<p>a</p>', '<p>a</p>', 'A', 14, '<p>a</p>');
 
 -- --------------------------------------------------------
 
@@ -139,6 +159,28 @@ CREATE TABLE `heyseven7h_score` (
 INSERT INTO `heyseven7h_score` (`id`, `name`, `score`, `dateSubmitted`, `tryout_id`) VALUES
 (7, 'a', 0, '2021-03-30 11:06:17pm', 14),
 (8, 'a', 100, '2021-03-30 11:06:33pm', 14);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `heyseven7h_student`
+--
+
+CREATE TABLE `heyseven7h_student` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `priceperhour` int(11) NOT NULL,
+  `tutor_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `heyseven7h_student`
+--
+
+INSERT INTO `heyseven7h_student` (`id`, `name`, `address`, `phone`, `priceperhour`, `tutor_id`) VALUES
+(3, 'Ryan', 'babatan pratama', '081', 75000, 4);
 
 -- --------------------------------------------------------
 
@@ -177,6 +219,12 @@ ALTER TABLE `heyseven7h_attendance`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `heyseven7h_private_attendance`
+--
+ALTER TABLE `heyseven7h_private_attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `heyseven7h_question`
 --
 ALTER TABLE `heyseven7h_question`
@@ -186,6 +234,12 @@ ALTER TABLE `heyseven7h_question`
 -- Indexes for table `heyseven7h_score`
 --
 ALTER TABLE `heyseven7h_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `heyseven7h_student`
+--
+ALTER TABLE `heyseven7h_student`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -202,13 +256,19 @@ ALTER TABLE `heyseven7h_tryout`
 -- AUTO_INCREMENT for table `heyseven7h_admin`
 --
 ALTER TABLE `heyseven7h_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_attendance`
 --
 ALTER TABLE `heyseven7h_attendance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `heyseven7h_private_attendance`
+--
+ALTER TABLE `heyseven7h_private_attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_question`
@@ -221,6 +281,12 @@ ALTER TABLE `heyseven7h_question`
 --
 ALTER TABLE `heyseven7h_score`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `heyseven7h_student`
+--
+ALTER TABLE `heyseven7h_student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_tryout`
