@@ -92,7 +92,7 @@ if (isset($_SESSION["loggedin"])) {
                                     <?php 
                                     $total_hours = 0;
                                     $counter = 1;
-                                                $sql = "SELECT id, date, start, finish, EXTRACT(HOUR FROM TIMEDIFF(finish, start)) + (EXTRACT(MINUTE FROM TIMEDIFF(finish, start)) + EXTRACT(SECOND FROM TIMEDIFF(finish, start))/60)/60 AS difference, subject, topic, comment, student_id FROM heyseven7h_private_attendance WHERE student_id=$id";
+                                                $sql = "SELECT id, DATE_FORMAT(date, '%d-%m-%Y') AS date, start, finish, EXTRACT(HOUR FROM TIMEDIFF(finish, start)) + (EXTRACT(MINUTE FROM TIMEDIFF(finish, start)) + EXTRACT(SECOND FROM TIMEDIFF(finish, start))/60)/60 AS difference, subject, topic, comment, student_id FROM heyseven7h_private_attendance WHERE student_id=$id";
                                                 $result = $conn->query($sql);
                        
                                                 if ($result->num_rows > 0) {
@@ -125,7 +125,7 @@ if (isset($_SESSION["loggedin"])) {
                             </p>
                             <p style="font-weight: bold; text-align: left;">
                                 <?php 
-                                $maximum_total = $total_amount + $total_amount * 0.1;
+                                $maximum_total = $total_amount - $total_amount * 0.1;
                                 echo "Net Amount: Rp $maximum_total" ;
                             ?>
                             </p>
