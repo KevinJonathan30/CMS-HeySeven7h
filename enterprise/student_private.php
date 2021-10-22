@@ -43,8 +43,19 @@ if (isset($_SESSION["loggedin"])) {
                     <li class="breadcrumb-item"><a href="privateattendance.php">Private Attendance</a></li>
                     <li class="breadcrumb-item active">Student Attendance</li>
                 </ol>
-                <a style="float: right;"><button data-toggle='modal' data-target='#addModal' class="btn btn-dark">Add
-                        New</button></a>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-success" onclick="exportTableToXlsx()">Export to Excel</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#clearModal">Clear Monthly
+                            Record</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <a style="float: right;"><button data-toggle='modal' data-target='#addModal'
+                                class="btn btn-dark">Add
+                                New</button></a>
+                    </div>
+                </div>
+
                 <br><br>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -65,7 +76,7 @@ if (isset($_SESSION["loggedin"])) {
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 if($row["tutor_id"] == $_SESSION["id"] || $_SESSION["role"] == 0) {
-                                    echo "<div style='margin-left: 1rem; margin-top: 1rem;'><p>Name: " . $row["name"]. "</p><p>Address: " . $row["address"]. "</p><p>Phone Number: " .
+                                    echo "<div style='margin-left: 1rem; margin-top: 1rem;'><p id='idStudent' style='display:none;'>". $id ."</p><p>Name: " . $row["name"]. "</p><p>Address: " . $row["address"]. "</p><p>Phone Number: " .
                               $row["phone"]."</p><p>Price/Hour: Rp ".$row["priceperhour"]."</p></div>";
                               $pricePerHour = $row["priceperhour"];
                                 }   
@@ -85,7 +96,7 @@ if (isset($_SESSION["loggedin"])) {
                                         <th>Subject</th>
                                         <th>Topic</th>
                                         <th>Comment</th>
-                                        <th>Action</th>
+                                        <th class="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,13 +113,44 @@ if (isset($_SESSION["loggedin"])) {
                                                     $row["start"]."</td><td>".$row["finish"]."</td><td>".
                                                     floatval($row["difference"])."</td><td>".
                                                     $row["subject"]."</td><td>".$row["topic"]."</td><td>".$row["comment"]."<td>
-                                                    <button class='btn btn-warning' title='Edit' onclick='editPage(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button>&nbsp;<button class='btn btn-danger' title='Delete' onclick='deletePage(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td></tr></a>";
+                                                    <button class='btn btn-warning action' title='Edit' onclick='editPage(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button>&nbsp;<button class='btn btn-danger action' title='Delete' onclick='deletePage(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td></tr></a>";
                                                     $counter++;
                                                   } 
                                                 }
                                                 $conn->close();
                                             ?>
                                 </tbody>
+                                <tfoot style="display: none;">
+                                    <tr>
+                                        <td>
+                                            <p style="font-weight: bold; text-align: left;">
+                                                <?php 
+                                $total_amount = $total_hours * $pricePerHour;
+                                echo "Total Amount: Rp $total_amount ($total_hours hour in total)" ;
+                            ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p style="font-weight: bold; text-align: left;">
+                                                <?php 
+                                $charge = $total_amount * 0.1;
+                                echo "Charge 10%: Rp $charge" ;
+                            ?>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p style="font-weight: bold; text-align: left;">
+                                                <?php 
+                                $maximum_total = $total_amount - $total_amount * 0.1;
+                                echo "Net Amount: Rp $maximum_total" ;
+                            ?>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                             <hr>
                             <p style="font-weight: bold; text-align: left;">
@@ -165,6 +207,32 @@ if (isset($_SESSION["loggedin"])) {
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" onclick="addEntry(<?php echo $id; ?>)" class="btn btn-warning"
                         data-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--clear entry modal-->
+    <div class="modal fade" id="clearModal" tabindex="-1" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Clear Monthly Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to clear the monthly record?</p>
+                    <ul>
+                        <li>Have you exported the table into Excel for this month? (for backup purpose)</li>
+                        <li>This action cannot be undone</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="clearMonthlyRecord()" class="btn btn-danger"
+                        data-dismiss="modal">Clear</button>
                 </div>
             </div>
         </div>
@@ -231,6 +299,7 @@ if (isset($_SESSION["loggedin"])) {
     <script src="js/scripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
     <script>
@@ -320,6 +389,39 @@ if (isset($_SESSION["loggedin"])) {
 
     function deletePage(id) {
         document.getElementById("idTemp").value = id;
+    }
+
+    function clearMonthlyRecord() {
+        var id = document.getElementById("idStudent").innerHTML;
+        $.ajax({
+            url: "API/clear_student_record_private.php",
+            type: "POST",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function exportTableToXlsx() {
+        var today = new Date();
+        $('.action').remove();
+        let table = document.getElementsByTagName("table");
+        TableToExcel.convert(table[0], {
+            name: today + '_Private.xlsx',
+            sheet: {
+                name: 'Sheet1'
+            }
+        });
+        setTimeout(function() {
+            location.reload();
+        }, 5000);
+
     }
     </script>
 </body>
