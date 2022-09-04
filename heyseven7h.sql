@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2021 at 01:43 PM
+-- Generation Time: Sep 04, 2022 at 10:04 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -112,13 +112,6 @@ CREATE TABLE `heyseven7h_private_attendance` (
   `tutor_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `heyseven7h_private_attendance`
---
-
-INSERT INTO `heyseven7h_private_attendance` (`id`, `date`, `start`, `finish`, `subject`, `topic`, `comment`, `student_id`, `tutor_id`) VALUES
-(9, '2021-08-10', '19:42:06', '20:42:06', 'a', 'a', 'a', 3, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -157,7 +150,6 @@ CREATE TABLE `heyseven7h_score` (
 --
 
 INSERT INTO `heyseven7h_score` (`id`, `name`, `score`, `dateSubmitted`, `tryout_id`) VALUES
-(7, 'a', 0, '2021-03-30 11:06:17pm', 14),
 (8, 'a', 100, '2021-03-30 11:06:33pm', 14);
 
 -- --------------------------------------------------------
@@ -256,7 +248,7 @@ ALTER TABLE `heyseven7h_tryout`
 -- AUTO_INCREMENT for table `heyseven7h_admin`
 --
 ALTER TABLE `heyseven7h_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `heyseven7h_attendance`
