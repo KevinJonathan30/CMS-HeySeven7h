@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once 'connector/connect.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $id = trim($_POST["idDeletion"]);
     if($id != "") {
         $sql = "DELETE FROM heyseven7h_private_attendance WHERE id=$id";
         if ($conn->multi_query($sql) === TRUE) {
-            header("location:privateattendance.php");
+            header("location:private_attendance.php");
         }   
     }
 }
@@ -33,14 +33,14 @@ if (isset($_SESSION["loggedin"])) {
 </head>
 
 <body class="sb-nav-fixed">
-    <?php include('components/navbar.php'); ?>
+    <?php include('views/navbar.php'); ?>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
                 <h1 class="mt-4">Student Attendance</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="privateattendance.php">Private Attendance</a></li>
+                    <li class="breadcrumb-item"><a href="private_attendance.php">Private Attendance</a></li>
                     <li class="breadcrumb-item active">Student Attendance</li>
                 </ol>
                 <div class="row">
@@ -176,7 +176,7 @@ if (isset($_SESSION["loggedin"])) {
                 </div>
             </div>
         </main>
-        <?php include('components/footer.php'); ?>
+        <?php include('views/footer.php'); ?>
     </div>
     </div>
     <div class="modal fade" id="addModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -264,7 +264,7 @@ if (isset($_SESSION["loggedin"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" onclick="submitEdit()" class="btn btn-warning"
+                    <button type="button" onclick="submit_edit()" class="btn btn-warning"
                         data-dismiss="modal">Edit</button>
                 </div>
             </div>
@@ -312,7 +312,7 @@ if (isset($_SESSION["loggedin"])) {
         var comment = document.getElementById("CommentAdd").value;
         if (date != "" && start != "" && finish != "") {
             $.ajax({
-                url: "API/addStudentAttendance.php",
+                url: "connector/add_student_attendance.php",
                 type: "POST",
                 data: {
                     date: date,
@@ -335,7 +335,7 @@ if (isset($_SESSION["loggedin"])) {
 
     function editPage(id) {
         $.ajax({
-            url: "API/getAttendanceDetail.php",
+            url: "connector/get_attendance_detail.php",
             type: "POST",
             data: {
                 id: id
@@ -356,7 +356,7 @@ if (isset($_SESSION["loggedin"])) {
         });
     }
 
-    function submitEdit() {
+    function submit_edit() {
         var id = document.getElementById("IDEdit").value;
         var date = document.getElementById("DateEdit").value;
         var start = document.getElementById("StartEdit").value;
@@ -366,7 +366,7 @@ if (isset($_SESSION["loggedin"])) {
         var comment = document.getElementById("CommentEdit").value;
         if (date != "" && start != "" && finish != "") {
             $.ajax({
-                url: "API/submitEditAttendance.php",
+                url: "connector/submit_edit_attendance.php",
                 type: "POST",
                 data: {
                     id: id,
@@ -394,7 +394,7 @@ if (isset($_SESSION["loggedin"])) {
     function clearMonthlyRecord() {
         var id = document.getElementById("idStudent").innerHTML;
         $.ajax({
-            url: "API/clear_student_record_private.php",
+            url: "connector/clear_student_record_private.php",
             type: "POST",
             data: {
                 id: id,

@@ -1,10 +1,10 @@
 <?php
 session_start();
-include 'connect.php';
+include 'connector/connect.php';
 
 if (isset($_SESSION["loggedin"])) {
     if($_SESSION["role"] != 0) {
-        header("location:alltests.php");
+        header("location:all_tests.php");
     }
   
 ?>
@@ -26,7 +26,7 @@ if (isset($_SESSION["loggedin"])) {
 </head>
 
 <body class="sb-nav-fixed">
-    <?php include('components/navbar.php'); ?>
+    <?php include('views/navbar.php'); ?>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
@@ -83,7 +83,7 @@ if (isset($_SESSION["loggedin"])) {
                                 </p>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="alltests.php">View Details</a>
+                                <a class="small text-white stretched-link" href="all_tests.php">View Details</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ if (isset($_SESSION["loggedin"])) {
                                 </p>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="viewscore.php">View Details</a>
+                                <a class="small text-white stretched-link" href="view_score.php">View Details</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -225,7 +225,7 @@ if (isset($_SESSION["loggedin"])) {
                 </div>
             </div>
         </main>
-        <?php include('components/footer.php'); ?>
+        <?php include('views/footer.php'); ?>
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
@@ -252,7 +252,7 @@ if (isset($_SESSION["loggedin"])) {
     maxScore = 0;
     $(document).ready(function() {
         $.ajax({
-            url: "API/getScoreData.php",
+            url: "connector/get_score_data.php",
             type: "POST",
             dataType: 'json',
             success: function(data) {
