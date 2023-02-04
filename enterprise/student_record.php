@@ -362,7 +362,6 @@ if (isset($_SESSION["loggedin"])) {
     }
 
     function clearMonthlyRecord() {
-        var id = document.getElementById("idTemp").value;
         $.ajax({
             url: "connector/clear_student_record.php",
             type: "POST",
