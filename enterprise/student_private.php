@@ -301,7 +301,6 @@ if (isset($_SESSION["loggedin"])) {
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
     <script>
     function addEntry(id) {
         var date = document.getElementById("DateAdd").value;
@@ -430,7 +429,7 @@ if (isset($_SESSION["loggedin"])) {
 <?php
 
 }
-else{
+else {
     header("location:login.php");
 }
 ?>

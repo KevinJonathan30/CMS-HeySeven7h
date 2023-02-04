@@ -5,7 +5,7 @@ require_once 'connector/connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $id = trim($_POST["idDeletion"]);
     if($id != "") {
-        $sql = "UPDATE heyseven7h_tryout SET linkTo='None' WHERE linkTo=$id;DELETE FROM heyseven7h_question WHERE tryout_id=$id; DELETE FROM heyseven7h_score WHERE tryout_id=$id; DELETE FROM heyseven7h_tryout WHERE id=$id";
+        $sql = "UPDATE heyseven7h_tryout SET linkTo='None' WHERE linkTo=$id; DELETE FROM heyseven7h_question WHERE tryout_id=$id; DELETE FROM heyseven7h_score WHERE tryout_id=$id; DELETE FROM heyseven7h_tryout WHERE id=$id";
         if ($conn->multi_query($sql) === TRUE) {
             header("location:all_tests.php");
         }   
@@ -145,7 +145,6 @@ if (isset($_SESSION["loggedin"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
     <script>
     function editPage(id) {
         $.ajax({
@@ -259,7 +258,7 @@ if (isset($_SESSION["loggedin"])) {
 <?php
 
 }
-else{
+else {
     header("location:login.php");
 }
 ?>

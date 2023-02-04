@@ -92,8 +92,7 @@ if (isset($_SESSION["loggedin"])) {
                                         <th>29</th>
                                         <th>30</th>
                                         <th>31</th>
-                                        <th class="action">Edit</th>
-                                        <th class="action">Delete</th>
+                                        <th class="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -104,39 +103,39 @@ if (isset($_SESSION["loggedin"])) {
                                         if ($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
                                                 echo "<tr>
-                                                <td>" . $row["name"]. "</td>
-                                                <td>" . $row["cal1"]. "</td>
-                                                <td>" . $row["cal2"]. "</td>
-                                                <td>" . $row["cal3"]. "</td>
-                                                <td>" . $row["cal4"]. "</td>
-                                                <td>" . $row["cal5"]. "</td>
-                                                <td>" . $row["cal6"]. "</td>
-                                                <td>" . $row["cal7"]. "</td>
-                                                <td>" . $row["cal8"]. "</td>
-                                                <td>" . $row["cal9"]. "</td>
-                                                <td>" . $row["cal10"]. "</td>
-                                                <td>" . $row["cal11"]. "</td>
-                                                <td>" . $row["cal12"]. "</td>
-                                                <td>" . $row["cal13"]. "</td>
-                                                <td>" . $row["cal14"]. "</td>
-                                                <td>" . $row["cal15"]. "</td>
-                                                <td>" . $row["cal16"]. "</td>
-                                                <td>" . $row["cal17"]. "</td>
-                                                <td>" . $row["cal18"]. "</td>
-                                                <td>" . $row["cal19"]. "</td>
-                                                <td>" . $row["cal20"]. "</td>
-                                                <td>" . $row["cal21"]. "</td>
-                                                <td>" . $row["cal22"]. "</td>
-                                                <td>" . $row["cal23"]. "</td>
-                                                <td>" . $row["cal24"]. "</td>
-                                                <td>" . $row["cal25"]. "</td>
-                                                <td>" . $row["cal26"]. "</td>
-                                                <td>" . $row["cal27"]. "</td>
-                                                <td>" . $row["cal28"]. "</td>
-                                                <td>" . $row["cal29"]. "</td>
-                                                <td>" . $row["cal30"]. "</td>
-                                                <td>" . $row["cal31"]. "</td><td><button class='btn btn-warning action' title='Edit' onclick='editEntry(".$row["id"].")' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button></td><td>
-                                                <button class='btn btn-danger action' title='Delete' onclick='deleteEntry(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td>
+                                                <td contenteditable='true' id='studentNameEditId" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["name"]. "</td>
+                                                <td contenteditable='true' id='studentCal1Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal1"]. "</td>
+                                                <td contenteditable='true' id='studentCal2Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal2"]. "</td>
+                                                <td contenteditable='true' id='studentCal3Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal3"]. "</td>
+                                                <td contenteditable='true' id='studentCal4Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal4"]. "</td>
+                                                <td contenteditable='true' id='studentCal5Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal5"]. "</td>
+                                                <td contenteditable='true' id='studentCal6Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal6"]. "</td>
+                                                <td contenteditable='true' id='studentCal7Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal7"]. "</td>
+                                                <td contenteditable='true' id='studentCal8Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal8"]. "</td>
+                                                <td contenteditable='true' id='studentCal9Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal9"]. "</td>
+                                                <td contenteditable='true' id='studentCal10Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal10"]. "</td>
+                                                <td contenteditable='true' id='studentCal11Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal11"]. "</td>
+                                                <td contenteditable='true' id='studentCal12Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal12"]. "</td>
+                                                <td contenteditable='true' id='studentCal13Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal13"]. "</td>
+                                                <td contenteditable='true' id='studentCal14Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal14"]. "</td>
+                                                <td contenteditable='true' id='studentCal15Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal15"]. "</td>
+                                                <td contenteditable='true' id='studentCal16Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal16"]. "</td>
+                                                <td contenteditable='true' id='studentCal17Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal17"]. "</td>
+                                                <td contenteditable='true' id='studentCal18Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal18"]. "</td>
+                                                <td contenteditable='true' id='studentCal19Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal19"]. "</td>
+                                                <td contenteditable='true' id='studentCal20Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal20"]. "</td>
+                                                <td contenteditable='true' id='studentCal21Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal21"]. "</td>
+                                                <td contenteditable='true' id='studentCal22Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal22"]. "</td>
+                                                <td contenteditable='true' id='studentCal23Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal23"]. "</td>
+                                                <td contenteditable='true' id='studentCal24Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal24"]. "</td>
+                                                <td contenteditable='true' id='studentCal25Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal25"]. "</td>
+                                                <td contenteditable='true' id='studentCal26Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal26"]. "</td>
+                                                <td contenteditable='true' id='studentCal27Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal27"]. "</td>
+                                                <td contenteditable='true' id='studentCal28Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal28"]. "</td>
+                                                <td contenteditable='true' id='studentCal29Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal29"]. "</td>
+                                                <td contenteditable='true' id='studentCal30Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal30"]. "</td>
+                                                <td contenteditable='true' id='studentCal31Id" . $row["id"] . "' onfocusout='onEntryEdit(" . $row["id"] . ")'>" . $row["cal31"]. "</td>
+                                                <td><button class='btn btn-danger action' title='Delete' onclick='deleteEntry(".$row["id"].")' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i></button></td>
                                                 </tr>";
                                             } 
                                         } 
@@ -196,93 +195,7 @@ if (isset($_SESSION["loggedin"])) {
                         </div>
                     </div>
                 </div>
-                <!--edit modal-->
-                <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Edit Entry</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <label>Student ID</label>
-                                <input type="number" id="studentIDEdit" class="form-control" disabled>
-                                <label>Name</label>
-                                <input type="text" id="studentNameEdit" class="form-control" maxlength="200">
-                                <label>Day 1</label>
-                                <input type="text" maxlength="10" id="studentCal1" class="form-control">
-                                <label>Day 2</label>
-                                <input type="text" maxlength="10" id="studentCal2" class="form-control">
-                                <label>Day 3</label>
-                                <input type="text" maxlength="10" id="studentCal3" class="form-control">
-                                <label>Day 4</label>
-                                <input type="text" maxlength="10" id="studentCal4" class="form-control">
-                                <label>Day 5</label>
-                                <input type="text" maxlength="10" id="studentCal5" class="form-control">
-                                <label>Day 6</label>
-                                <input type="text" maxlength="10" id="studentCal6" class="form-control">
-                                <label>Day 7</label>
-                                <input type="text" maxlength="10" id="studentCal7" class="form-control">
-                                <label>Day 8</label>
-                                <input type="text" maxlength="10" id="studentCal8" class="form-control">
-                                <label>Day 9</label>
-                                <input type="text" maxlength="10" id="studentCal9" class="form-control">
-                                <label>Day 10</label>
-                                <input type="text" maxlength="10" id="studentCal10" class="form-control">
-                                <label>Day 11</label>
-                                <input type="text" maxlength="10" id="studentCal11" class="form-control">
-                                <label>Day 12</label>
-                                <input type="text" maxlength="10" id="studentCal12" class="form-control">
-                                <label>Day 13</label>
-                                <input type="text" maxlength="10" id="studentCal13" class="form-control">
-                                <label>Day 14</label>
-                                <input type="text" maxlength="10" id="studentCal14" class="form-control">
-                                <label>Day 15</label>
-                                <input type="text" maxlength="10" id="studentCal15" class="form-control">
-                                <label>Day 16</label>
-                                <input type="text" maxlength="10" id="studentCal16" class="form-control">
-                                <label>Day 17</label>
-                                <input type="text" maxlength="10" id="studentCal17" class="form-control">
-                                <label>Day 18</label>
-                                <input type="text" maxlength="10" id="studentCal18" class="form-control">
-                                <label>Day 19</label>
-                                <input type="text" maxlength="10" id="studentCal19" class="form-control">
-                                <label>Day 20</label>
-                                <input type="text" maxlength="10" id="studentCal20" class="form-control">
-                                <label>Day 21</label>
-                                <input type="text" maxlength="10" id="studentCal21" class="form-control">
-                                <label>Day 22</label>
-                                <input type="text" maxlength="10" id="studentCal22" class="form-control">
-                                <label>Day 23</label>
-                                <input type="text" maxlength="10" id="studentCal23" class="form-control">
-                                <label>Day 24</label>
-                                <input type="text" maxlength="10" id="studentCal24" class="form-control">
-                                <label>Day 25</label>
-                                <input type="text" maxlength="10" id="studentCal25" class="form-control">
-                                <label>Day 26</label>
-                                <input type="text" maxlength="10" id="studentCal26" class="form-control">
-                                <label>Day 27</label>
-                                <input type="text" maxlength="10" id="studentCal27" class="form-control">
-                                <label>Day 28</label>
-                                <input type="text" maxlength="10" id="studentCal28" class="form-control">
-                                <label>Day 29</label>
-                                <input type="text" maxlength="10" id="studentCal29" class="form-control">
-                                <label>Day 30</label>
-                                <input type="text" maxlength="10" id="studentCal30" class="form-control">
-                                <label>Day 31</label>
-                                <input type="text" maxlength="10" id="studentCal31" class="form-control">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" onclick="editStudent()" class="btn btn-warning"
-                                    data-dismiss="modal">Edit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <!--delete modal-->
                 <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -319,7 +232,6 @@ if (isset($_SESSION["loggedin"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <script>
     function addStudent() {
@@ -341,89 +253,46 @@ if (isset($_SESSION["loggedin"])) {
         }
     }
 
-    function editEntry(id) {
-        $.ajax({
-            url: "connector/get_student_record.php",
-            type: "POST",
-            data: {
-                id: id
-            },
-            dataType: "json",
-            success: function(data) {
-                document.getElementById("studentIDEdit").value = data[0].id;
-                document.getElementById("studentNameEdit").value = data[0].name;
-                document.getElementById("studentCal1").value = data[0].cal1;
-                document.getElementById("studentCal2").value = data[0].cal2;
-                document.getElementById("studentCal3").value = data[0].cal3;
-                document.getElementById("studentCal4").value = data[0].cal4;
-                document.getElementById("studentCal5").value = data[0].cal5;
-                document.getElementById("studentCal6").value = data[0].cal6;
-                document.getElementById("studentCal7").value = data[0].cal7;
-                document.getElementById("studentCal8").value = data[0].cal8;
-                document.getElementById("studentCal9").value = data[0].cal9;
-                document.getElementById("studentCal10").value = data[0].cal10;
-                document.getElementById("studentCal11").value = data[0].cal11;
-                document.getElementById("studentCal12").value = data[0].cal12;
-                document.getElementById("studentCal13").value = data[0].cal13;
-                document.getElementById("studentCal14").value = data[0].cal14;
-                document.getElementById("studentCal15").value = data[0].cal15;
-                document.getElementById("studentCal16").value = data[0].cal16;
-                document.getElementById("studentCal17").value = data[0].cal17;
-                document.getElementById("studentCal18").value = data[0].cal18;
-                document.getElementById("studentCal19").value = data[0].cal19;
-                document.getElementById("studentCal20").value = data[0].cal20;
-                document.getElementById("studentCal21").value = data[0].cal21;
-                document.getElementById("studentCal22").value = data[0].cal22;
-                document.getElementById("studentCal23").value = data[0].cal23;
-                document.getElementById("studentCal24").value = data[0].cal24;
-                document.getElementById("studentCal25").value = data[0].cal25;
-                document.getElementById("studentCal26").value = data[0].cal26;
-                document.getElementById("studentCal27").value = data[0].cal27;
-                document.getElementById("studentCal28").value = data[0].cal28;
-                document.getElementById("studentCal29").value = data[0].cal29;
-                document.getElementById("studentCal30").value = data[0].cal30;
-                document.getElementById("studentCal31").value = data[0].cal31;
-            },
-            error: function(data) {
-                console.log(data);
+    $(document).keypress(
+        function(event) {
+            if (event.which == '13') {
+                event.preventDefault();
             }
         });
-    }
 
-    function editStudent() {
-        var id = document.getElementById("studentIDEdit").value;
-        var name = document.getElementById("studentNameEdit").value;
-        var cal1 = document.getElementById("studentCal1").value;
-        var cal2 = document.getElementById("studentCal2").value;
-        var cal3 = document.getElementById("studentCal3").value;
-        var cal4 = document.getElementById("studentCal4").value;
-        var cal5 = document.getElementById("studentCal5").value;
-        var cal6 = document.getElementById("studentCal6").value;
-        var cal7 = document.getElementById("studentCal7").value;
-        var cal8 = document.getElementById("studentCal8").value;
-        var cal9 = document.getElementById("studentCal9").value;
-        var cal10 = document.getElementById("studentCal10").value;
-        var cal11 = document.getElementById("studentCal11").value;
-        var cal12 = document.getElementById("studentCal12").value;
-        var cal13 = document.getElementById("studentCal13").value;
-        var cal14 = document.getElementById("studentCal14").value;
-        var cal15 = document.getElementById("studentCal15").value;
-        var cal16 = document.getElementById("studentCal16").value;
-        var cal17 = document.getElementById("studentCal17").value;
-        var cal18 = document.getElementById("studentCal18").value;
-        var cal19 = document.getElementById("studentCal19").value;
-        var cal20 = document.getElementById("studentCal20").value;
-        var cal21 = document.getElementById("studentCal21").value;
-        var cal22 = document.getElementById("studentCal22").value;
-        var cal23 = document.getElementById("studentCal23").value;
-        var cal24 = document.getElementById("studentCal24").value;
-        var cal25 = document.getElementById("studentCal25").value;
-        var cal26 = document.getElementById("studentCal26").value;
-        var cal27 = document.getElementById("studentCal27").value;
-        var cal28 = document.getElementById("studentCal28").value;
-        var cal29 = document.getElementById("studentCal29").value;
-        var cal30 = document.getElementById("studentCal30").value;
-        var cal31 = document.getElementById("studentCal31").value;
+    function onEntryEdit(id) {
+        var name = document.getElementById("studentNameEditId" + id).innerHTML;
+        var cal1 = document.getElementById("studentCal1Id" + id).innerHTML;
+        var cal2 = document.getElementById("studentCal2Id" + id).innerHTML;
+        var cal3 = document.getElementById("studentCal3Id" + id).innerHTML;
+        var cal4 = document.getElementById("studentCal4Id" + id).innerHTML;
+        var cal5 = document.getElementById("studentCal5Id" + id).innerHTML;
+        var cal6 = document.getElementById("studentCal6Id" + id).innerHTML;
+        var cal7 = document.getElementById("studentCal7Id" + id).innerHTML;
+        var cal8 = document.getElementById("studentCal8Id" + id).innerHTML;
+        var cal9 = document.getElementById("studentCal9Id" + id).innerHTML;
+        var cal10 = document.getElementById("studentCal10Id" + id).innerHTML;
+        var cal11 = document.getElementById("studentCal11Id" + id).innerHTML;
+        var cal12 = document.getElementById("studentCal12Id" + id).innerHTML;
+        var cal13 = document.getElementById("studentCal13Id" + id).innerHTML;
+        var cal14 = document.getElementById("studentCal14Id" + id).innerHTML;
+        var cal15 = document.getElementById("studentCal15Id" + id).innerHTML;
+        var cal16 = document.getElementById("studentCal16Id" + id).innerHTML;
+        var cal17 = document.getElementById("studentCal17Id" + id).innerHTML;
+        var cal18 = document.getElementById("studentCal18Id" + id).innerHTML;
+        var cal19 = document.getElementById("studentCal19Id" + id).innerHTML;
+        var cal20 = document.getElementById("studentCal20Id" + id).innerHTML;
+        var cal21 = document.getElementById("studentCal21Id" + id).innerHTML;
+        var cal22 = document.getElementById("studentCal22Id" + id).innerHTML;
+        var cal23 = document.getElementById("studentCal23Id" + id).innerHTML;
+        var cal24 = document.getElementById("studentCal24Id" + id).innerHTML;
+        var cal25 = document.getElementById("studentCal25Id" + id).innerHTML;
+        var cal26 = document.getElementById("studentCal26Id" + id).innerHTML;
+        var cal27 = document.getElementById("studentCal27Id" + id).innerHTML;
+        var cal28 = document.getElementById("studentCal28Id" + id).innerHTML;
+        var cal29 = document.getElementById("studentCal29Id" + id).innerHTML;
+        var cal30 = document.getElementById("studentCal30Id" + id).innerHTML;
+        var cal31 = document.getElementById("studentCal31Id" + id).innerHTML;
         $.ajax({
             url: "connector/update_student_record.php",
             type: "POST",
@@ -463,7 +332,7 @@ if (isset($_SESSION["loggedin"])) {
                 cal31: cal31
             },
             success: function(data) {
-                location.reload();
+                console.log(data);
             },
             error: function(data) {
                 console.log(data);
@@ -529,6 +398,13 @@ if (isset($_SESSION["loggedin"])) {
         });
         $("#monthName").html(month + " " + date.getFullYear())
     });
+
+    $(document).keypress(function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            $("table td").blur();
+        }
+    });
     </script>
 </body>
 
@@ -536,7 +412,7 @@ if (isset($_SESSION["loggedin"])) {
 <?php
 
 }
-else{
+else {
     header("location:login.php");
 }
 ?>
