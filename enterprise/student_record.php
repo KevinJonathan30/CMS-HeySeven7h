@@ -54,7 +54,7 @@ if (isset($_SESSION["loggedin"])) {
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th colspan="34" id="monthName"></th>
@@ -395,7 +395,9 @@ if (isset($_SESSION["loggedin"])) {
         const month = date.toLocaleString('default', {
             month: 'long'
         });
-        $("#monthName").html(month + " " + date.getFullYear())
+        $("#monthName").html(month + " " + date.getFullYear());
+
+        $('table').DataTable({});
     });
 
     $(document).keypress(function(event) {

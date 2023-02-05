@@ -85,7 +85,7 @@ if (isset($_SESSION["loggedin"])) {
                     ?>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -211,6 +211,7 @@ if (isset($_SESSION["loggedin"])) {
             </div>
         </div>
     </div>
+    
     <!--clear entry modal-->
     <div class="modal fade" id="clearModal" tabindex="-1" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
