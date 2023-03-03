@@ -2,23 +2,13 @@
 session_start();
 require_once 'connector/connect.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $questionid = trim($_POST["idDeletion"]);
-    if($questionid != "") {
-        $sql = "DELETE FROM heyseven7h_question WHERE id=$questionid";
-        if ($conn->query($sql) === TRUE) {
-            header("Refresh:0");
-        }   
-    }
-}
-
 if (isset($_SESSION["loggedin"])) {
     if(!$_GET || $_GET["id"]=="" || !ctype_digit($_GET['id'])){
         header("location:all_tests.php");
     } else {
         $id = $_GET["id"];
         $sql = "SELECT name FROM heyseven7h_tryout WHERE id=$id";
-        $result = $conn->query($sql);                     
+        $result = $conn->query($sql);          
         if ($result->num_rows == 0) {
             header("location:all_tests.php");
         }
@@ -154,10 +144,8 @@ if (isset($_SESSION["loggedin"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                        <input type="hidden" name="idDeletion" id="idTemp" value=0>
-                        <button type="submit" class="btn btn-danger">Delete!</button>
-                    </form>
+                    <input type="hidden" name="idDeletion" id="idTemp" value=0>
+                    <button type="button" class="btn btn-danger" onclick="deleteQuestionById();">Delete!</button>
                 </div>
             </div>
         </div>
@@ -215,6 +203,23 @@ if (isset($_SESSION["loggedin"])) {
     <script>
     function deleteQuestion(id) {
         document.getElementById("idTemp").value = id;
+    }
+
+    function deleteQuestionById() {
+        let id = document.getElementById("idTemp").value;
+        $.ajax({
+            url: "connector/delete_question_by_id.php",
+            type: "POST",
+            data: {
+                id: id
+            },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
     }
 
     function viewQuestion(id) {
