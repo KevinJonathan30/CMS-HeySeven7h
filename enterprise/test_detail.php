@@ -23,7 +23,7 @@ if (isset($_SESSION["loggedin"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Detail Test - Enterprise</title>
+    <title>Test Detail - Enterprise</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
@@ -43,12 +43,12 @@ if (isset($_SESSION["loggedin"])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Detail Test</h1>
+                <h1 class="mt-4">Test Detail</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                     <li class="breadcrumb-item active">Tests</li>
                     <li class="breadcrumb-item"><a href="all_tests.php">All Tests</a></li>
-                    <li class="breadcrumb-item active">Detail Test</li>
+                    <li class="breadcrumb-item active">Test Detail</li>
                 </ol>
                 <button class="btn btn-dark" style="float: right;" data-toggle="modal" data-target="#addNewModal">Add
                     New</button>
