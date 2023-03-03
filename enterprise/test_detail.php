@@ -2,23 +2,13 @@
 session_start();
 require_once 'connector/connect.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $questionid = trim($_POST["idDeletion"]);
-    if($questionid != "") {
-        $sql = "DELETE FROM heyseven7h_question WHERE id=$questionid";
-        if ($conn->query($sql) === TRUE) {
-            header("Refresh:0");
-        }   
-    }
-}
-
 if (isset($_SESSION["loggedin"])) {
     if(!$_GET || $_GET["id"]=="" || !ctype_digit($_GET['id'])){
         header("location:all_tests.php");
     } else {
         $id = $_GET["id"];
         $sql = "SELECT name FROM heyseven7h_tryout WHERE id=$id";
-        $result = $conn->query($sql);                     
+        $result = $conn->query($sql);          
         if ($result->num_rows == 0) {
             header("location:all_tests.php");
         }
@@ -33,7 +23,7 @@ if (isset($_SESSION["loggedin"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Detail Test - Enterprise</title>
+    <title>Test Detail - Enterprise</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
@@ -53,12 +43,12 @@ if (isset($_SESSION["loggedin"])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Detail Test</h1>
+                <h1 class="mt-4">Test Detail</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                     <li class="breadcrumb-item active">Tests</li>
                     <li class="breadcrumb-item"><a href="all_tests.php">All Tests</a></li>
-                    <li class="breadcrumb-item active">Detail Test</li>
+                    <li class="breadcrumb-item active">Test Detail</li>
                 </ol>
                 <button class="btn btn-dark" style="float: right;" data-toggle="modal" data-target="#addNewModal">Add
                     New</button>
@@ -154,10 +144,8 @@ if (isset($_SESSION["loggedin"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                        <input type="hidden" name="idDeletion" id="idTemp" value=0>
-                        <button type="submit" class="btn btn-danger">Delete!</button>
-                    </form>
+                    <input type="hidden" name="idDeletion" id="idTemp" value=0>
+                    <button type="button" class="btn btn-danger" onclick="deleteQuestionById();">Delete!</button>
                 </div>
             </div>
         </div>
@@ -215,6 +203,23 @@ if (isset($_SESSION["loggedin"])) {
     <script>
     function deleteQuestion(id) {
         document.getElementById("idTemp").value = id;
+    }
+
+    function deleteQuestionById() {
+        let id = document.getElementById("idTemp").value;
+        $.ajax({
+            url: "connector/delete_question_by_id.php",
+            type: "POST",
+            data: {
+                id: id
+            },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
     }
 
     function viewQuestion(id) {
